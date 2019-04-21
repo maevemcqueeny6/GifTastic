@@ -45,14 +45,38 @@ $("#buttons").on("click", ".search-btn", function () {
                 var pOne = $("<p>").text("Rating: " + rating);
                 giphyDiv.append(pOne);
 
-                var imgURL = response.data[i].images.fixed_height_small.url;
+                // var imgURLstill = response.data[i].images.fixed_height_small_still.url;
+                // // imgURLstill.attr("data-state", "still");
+                // // imgURLstill.addClass("gif");
+
+              
+
                 var giphyimage = $("<img>");
-                giphyimage.attr("src", imgURL);
+                giphyimage.attr("src", response.data[i].images.fixed_height_small_still.url);
+
+                giphyimage.attr("data-still", response.data[i].images.fixed_height_small_still.url);
+
+                giphyimage.attr("data-animate", response.data[i].images.fixed_height_small.url);
+
+                giphyimage.attr("data-state", "still");
+
                 giphyimage.attr("alt", "search item")
+                giphyimage.addClass(".gif");
                 giphyDiv.append(giphyimage);
 
 
                 $("#search-view").prepend(giphyDiv);
+
+                giphyimage.on("click", function() {
+                    var state = $(this).attr("data-state");
+                    if (state === "still") {
+                      $(this).attr("src", $(this).attr("data-animate"));
+                      $(this).attr("data-state", "animate");
+                    } else {
+                      $(this).attr("src", $(this).attr("data-still"));
+                      $(this).attr("data-state", "still");
+                    }
+                  });
             };
         });
 
