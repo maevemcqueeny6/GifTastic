@@ -1,4 +1,4 @@
-var searchterms = ["Tobias Funke", "George W. Bush"];
+var searchterms = ["Tobias Funke", "George W. Bush", "Nixon"];
 
 
 function renderButtons() {
@@ -18,6 +18,7 @@ $("#add").on("click", function (event) {
     var searchterm = $("#input").val().trim();
     searchterms.push(searchterm);
     renderButtons();
+    $("#input").val(" "); 
 });
 
 renderButtons();
@@ -45,11 +46,6 @@ $("#buttons").on("click", ".search-btn", function () {
                 var pOne = $("<p>").text("Rating: " + rating);
                 giphyDiv.append(pOne);
 
-                // var imgURLstill = response.data[i].images.fixed_height_small_still.url;
-                // // imgURLstill.attr("data-state", "still");
-                // // imgURLstill.addClass("gif");
-
-              
 
                 var giphyimage = $("<img>");
                 giphyimage.attr("src", response.data[i].images.fixed_height_small_still.url);
@@ -66,6 +62,8 @@ $("#buttons").on("click", ".search-btn", function () {
 
 
                 $("#search-view").prepend(giphyDiv);
+
+                // animate
 
                 giphyimage.on("click", function() {
                     var state = $(this).attr("data-state");
