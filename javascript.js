@@ -37,7 +37,6 @@ $("#buttons").on("click", ".search-btn", function () {
         method: "GET"
     })
         .then(function (response) {
-            console.log(response.data);
 
             for (i = 0; i < response.data.length; i++) {
                 var giphyDiv = $("<div class='giphyDiv'>");
